@@ -16,11 +16,10 @@ public class enemyMove : MonoBehaviour
 
     public Transform target;
     [SerializeField]
-    Seeker seeker;
+    private Seeker seeker;
     [SerializeField]
-    Rigidbody2D rb;
-
-
+    private Rigidbody2D rb;
+    Vector2 force;
 
 
     // Start is called before the first frame update
@@ -84,6 +83,14 @@ public class enemyMove : MonoBehaviour
             currWay++;
         }
 
+        
 
     }
+    private void Update()
+    {
+        //Face Player
+        Vector2 direction = new Vector2(target.position.x - transform.position.x, target.position.y - transform.position.y);
+        transform.right = direction;
+    }
+
 }

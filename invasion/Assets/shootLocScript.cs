@@ -7,14 +7,14 @@ public class shootLocScript : MonoBehaviour
     [SerializeField] float flashDelay;
     public void flash()
     {
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<SpriteRenderer>().color = Color.red;
         StartCoroutine(undo());
     }
 
     private IEnumerator undo()
     {
         yield return new WaitForSeconds (flashDelay);
-        this.GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
 
     }
 }

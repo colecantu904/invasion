@@ -22,7 +22,8 @@ public class simpleMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Physics2D.queriesHitTriggers = false;
+
     }
 
     // Update is called once per frame
@@ -58,15 +59,15 @@ public class simpleMove : MonoBehaviour
     private void shoot()
     {
         if (Input.GetMouseButtonDown(0)){
-            _shootLocation.GetComponent<shootLocScript>().flash();
+            GetComponentInChildren<shootLocScript>().flash();
             var hit = Physics2D.Raycast(_shootLocation.position, rb.transform.right, _range);
-            if (hit.collider != null)
+            if (hit.collider != null&& !hit.collider.isTrigger)
             {
+ 
                 var _hit = hit.collider.GetComponent<Hittable>();
                 _hit?.isHit(hit);
-                
-
             }
         }
     }
+
 }
