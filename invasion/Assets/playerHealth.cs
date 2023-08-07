@@ -24,17 +24,18 @@ public class playerHealth : MonoBehaviour
     private IEnumerator takeDamage(int dam, float pace)
     {
         yield return new WaitForSeconds(pace);
+
+    }
+
+    //Starts damage loop
+    public void hit(int dam)
+    {
+        //StartCoroutine(takeDamage(dam,pace));
         sr.color = Color.red;
         StartCoroutine(colorReset());
         health -= dam;
         if (health <= 0) SceneManager.LoadScene(0);
         Debug.Log("hit");
-    }
-
-    //Starts damage loop
-    public void hit(int dam,float pace)
-    {
-        StartCoroutine(takeDamage(dam,pace));
     }
 
     //resets player color
