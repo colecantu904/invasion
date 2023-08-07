@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Hittable : MonoBehaviour
 {
+    
     public GameObject mark;
     // Start is called before the first frame update
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -17,13 +18,16 @@ public class Hittable : MonoBehaviour
         
     }
 
-    public void isHit(Vector2 _spot)
+    public void isHit(RaycastHit2D _spot)
     {
         
         
-        Instantiate(mark, _spot, Quaternion.identity);
-        if (this.tag == "enemy") this.GetComponent<enemyScript>().takeDamage();
+        Instantiate(mark, _spot.point, Quaternion.identity);
+        var enemy = GetComponent<enemyScript>();
+        enemy?.takeDamage();
+
 
     }
+
 
 }

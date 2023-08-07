@@ -6,7 +6,12 @@ public class droneScript : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    private float droneDistance = -1.2f;
+    [SerializeField]
+    Rigidbody2D rb;
+    private float droneDistance = 1.2f;
+    public float droneDamp = 2f;
+    
+    
 
 
     private void Awake()
@@ -14,9 +19,27 @@ public class droneScript : MonoBehaviour
         Vector2 playerlocation = new Vector2(player.transform.position.x + droneDistance, player.transform.position.y + droneDistance);
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
-        Vector2 playerlocation = new Vector2(player.transform.position.x + droneDistance, player.transform.position.y + droneDistance);
-        transform.position = playerlocation;
+
+        //transform.position = playerlocation;
+        move();
     }
+
+    private void move()
+    {
+        Vector2 playerlocation = new Vector2(player.transform.position.x + droneDistance, player.transform.position.y + droneDistance);
+ 
+        if (player.GetComponent<Transform>().rotation.z > 0)
+        {
+            droneDistance *= -1;
+        }
+        rb.position = Vector2.MoveTowards(rb.position, playerlocation, droneDamp);
+    }
+
 }

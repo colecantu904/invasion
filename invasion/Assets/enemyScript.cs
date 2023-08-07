@@ -6,15 +6,18 @@ public class enemyScript : MonoBehaviour
 {
     private SpriteRenderer sr;
     [SerializeField] public int health = 5;
+
     public void takeDamage()
     {
+
         sr.color = Color.red;
         health -= 1;
         if (health <= 0) Destroy(gameObject);
         Debug.Log("ouch");
     }
-    void Start()
+
+    private void Awake()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
     }
 }

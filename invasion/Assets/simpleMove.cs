@@ -63,7 +63,9 @@ public class simpleMove : MonoBehaviour
             if (hit.collider != null)
             {
                 var _hit = hit.collider.GetComponent<Hittable>();
-                _hit?.isHit(hit.point);
+                _hit?.isHit(hit);
+                
+
             }
         }
     }
