@@ -12,29 +12,44 @@ public class enemyScript : MonoBehaviour
 
     public void takeDamage()
     {
-
+        setTargettoPlayer();
         sr.color = Color.red;
         health -= 1;
         if (health <= 0) Destroy(gameObject);
         StartCoroutine(flash());
     }
+
     private IEnumerator flash()
     {
         yield return new WaitForSeconds(delay);
         sr.color = Color.white;
     }
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player" && !activated)
         {
-            var enemy = GetComponent<enemyMove>();
-            enemy.enabled = true;
-            enemy.target = collision.transform;
+            setTargettoPlayer();
+        }
+
+        if (collision.tag == "patrolTarget")
+        {
+            collision.GetComponent<patrolTargetScript>().rotateTarget();
         }
     }
+
+    void setTargettoPlayer()
+    {
+        var enemy = GetComponent<enemyMove>();
+        //enemy.enabled = true;
+        enemy.target = GameObject.Find("Player").GetComponent<Transform>();
+        GetComponent<enemyMove>().pathRate = .5f;
+    }
+
 }

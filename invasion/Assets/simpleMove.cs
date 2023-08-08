@@ -23,7 +23,6 @@ public class simpleMove : MonoBehaviour
     void Start()
     {
         Physics2D.queriesHitTriggers = false;
-
     }
 
     // Update is called once per frame

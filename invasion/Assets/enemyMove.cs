@@ -9,6 +9,7 @@ public class enemyMove : MonoBehaviour
     public float wayPointDist = 3f;
     private int currWay = 0;
     private bool reachedWay = false;
+    public float pathRate = 2f;
 
 
     Path path;
@@ -29,7 +30,8 @@ public class enemyMove : MonoBehaviour
         seeker = GetComponent<Seeker>();
 
 
-        InvokeRepeating("updatePath", 0f, 2f);
+        InvokeRepeating("updatePath", 0f, pathRate);
+        
 
     }
 
@@ -52,7 +54,6 @@ public class enemyMove : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (path == null)
