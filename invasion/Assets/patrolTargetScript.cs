@@ -25,7 +25,6 @@ public class patrolTargetScript : MonoBehaviour
             i = 0;
         }
 
-        Debug.Log("rotataed");
         // can mpdify to take a specific int to set the position accordingly
         Vector2[] spot = { first, second, third, fourth };
         transform.position = spot[i];
